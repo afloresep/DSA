@@ -136,6 +136,40 @@ class LinkedList:
         self.head = prev
 
 
+    def merge_sort_llist2(self, list2):
+        p, q, s = self.head, list2.head, None
+
+        # decide where to start
+        if p and q:
+            if p.data <= q.data:
+                s = p
+                p = s.next
+            else:
+                s = q
+                q = s.next
+                
+        # define head as the minimun number between the two heads
+        self.head = s
+
+        while p and q:
+            if p.data <= q.data:
+                # point previous to next number
+                s.next = p
+                # move s pointer to p
+                s = p
+                # move p to next number
+                p = s.next
+            # Samething 
+            else:
+                s.next = q
+                s = q
+                q = s.next 
+
+        # if it is empty then continue on the pointer on the other branch
+        if not q: s.next =p 
+        if not p: s.next = q 
+
+
 # Usage examples 
 # llist = LinkedList()
 # llist.append('A')
