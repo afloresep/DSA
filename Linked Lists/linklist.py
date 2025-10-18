@@ -183,6 +183,26 @@ class LinkedList:
                 prev.next = cur.next
                 cur =cur.next
 
+    def get_node_index(self, idx):
+        count = 0
+        cur = self.head 
+        while cur:
+            
+            if count == idx:
+                return cur.data
+            else:
+                count +=1
+                cur = cur.next 
+        return None
+
+    def count_occurences(self, data):
+       count = 0
+       cur = self.head
+       while cur:
+           if cur.data == str(data):
+               count+=1
+           cur = cur.next 
+       return count
 
 # Usage examples 
 # llist = LinkedList()
