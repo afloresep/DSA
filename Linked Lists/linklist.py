@@ -125,6 +125,15 @@ class LinkedList:
 
         cur1.next, cur2.next = cur2.next, cur1.next
 
+    def reverse_list(self):
+        cur = self.head
+        prev = None 
+        while cur:
+            next = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next 
+        self.head = prev
 
 
 # Usage examples 
