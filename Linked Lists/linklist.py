@@ -136,7 +136,7 @@ class LinkedList:
         self.head = prev
 
 
-    def merge_sort_llist2(self, list2):
+    def merge_sorted_list(self, list2):
         p, q, s = self.head, list2.head, None
 
         # decide where to start
@@ -168,6 +168,20 @@ class LinkedList:
         # if it is empty then continue on the pointer on the other branch
         if not q: s.next =p 
         if not p: s.next = q 
+
+    def remove_duplicates(self):
+        items = []
+        cur = self.head
+        prev = None
+        while cur:
+            if cur.data not in items:
+                items.append(cur.data)
+                prev = cur
+                cur.next = cur.next
+                cur = cur.next
+            else:
+                prev.next = cur.next
+                cur =cur.next
 
 
 # Usage examples 
