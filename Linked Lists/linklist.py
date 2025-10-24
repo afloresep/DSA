@@ -204,6 +204,19 @@ class LinkedList:
            cur = cur.next 
        return count
 
+    def rotate(self, data):
+        # rotate on node where data is found
+        cur = self.head
+        while cur.next:
+          if cur.data == index:
+            new_end = cur
+          cur = cur.next
+
+        cur.next = self.head
+        self.head = new_end.next 
+        new_end.next = None
+
+
 # Usage examples 
 # llist = LinkedList()
 # llist.append('A')
