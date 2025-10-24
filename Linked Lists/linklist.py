@@ -205,16 +205,21 @@ class LinkedList:
        return count
 
     def rotate(self, data):
-        # rotate on node where data is found
         cur = self.head
+        new_end = None
         while cur.next:
-          if cur.data == index:
+          if cur.data == data:
             new_end = cur
           cur = cur.next
 
-        cur.next = self.head
-        self.head = new_end.next 
-        new_end.next = None
+        if new_end is None:
+            # if data is not found then return list as it is
+            return
+        else:
+            cur.next = self.head
+            self.head = new_end.next 
+            new_end.next = None
+
 
 
 # Usage examples 
