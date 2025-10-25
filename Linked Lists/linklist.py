@@ -220,15 +220,66 @@ class LinkedList:
             self.head = new_end.next 
             new_end.next = None
 
+class CircularLinkedList():
+    def __init__(self):
+        self.head = None 
+
+    def prepend(self, data):
+        #   "Add at the beggining (head)"
+        new_node = Node(data)
+        cur = self.head 
+        new_node.next = self.head
+
+        while cur.next != self.head:
+            cur = cur.next
+
+        cur.next = new_node
+        new_node.next = self.head
+        self.head = new_node
 
 
-# Usage examples 
-# llist = LinkedList()
-# llist.append('A')
-# llist.append('B')
-# llist.append('C')
-# llist.append('D')
-# llist.remove_index(3)
-# repr(llist) 
-# llist.len(llist.head) 
-# len(llist)
+    def append(self, data):
+        # Add at the end (tail)
+        if self.head is None:
+            self.head = Node(data)
+            self.head.next = self.head
+
+        else:
+            cur = self.head
+            while cur.next != self.head:
+                cur = cur.next
+
+            new_node = Node(data) 
+            cur.next = new_node
+            new_node.next = self.head
+            
+            
+    def print_list(self):
+        cur = self.head 
+
+        while cur:
+            print(cur.data)
+            cur = cur.next
+            if cur == self.head:
+                break
+    def remove(self, key):
+        if self.head:
+            if self.head.data == key:
+                cur = self.head 
+                while cur.next != self.head:
+                    cur = cur.next 
+                if self.head == self.head.next:
+                    self.head = None
+                else:
+                    cur.next = self.head.next
+                    self.head = self.head.next
+            else:
+                cur = self.head 
+                prev = None 
+                while cur.next != self.head:
+                    prev = cur 
+                    cur = cur.next
+                    if cur.data == key:
+                        prev.next = cur.next 
+                        cur = cur.next
+
