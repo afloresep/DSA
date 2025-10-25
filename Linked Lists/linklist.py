@@ -237,7 +237,6 @@ class CircularLinkedList():
         new_node.next = self.head
         self.head = new_node
 
-
     def append(self, data):
         # Add at the end (tail)
         if self.head is None:
@@ -252,7 +251,6 @@ class CircularLinkedList():
             new_node = Node(data) 
             cur.next = new_node
             new_node.next = self.head
-            
             
     def print_list(self):
         cur = self.head 
@@ -283,3 +281,32 @@ class CircularLinkedList():
                         prev.next = cur.next 
                         cur = cur.next
 
+    def __len__(self):
+        cur = self.head
+        length = 1
+        while cur.next != self.head:
+            length += 1 
+            cur = cur.next
+        return length
+
+    def split_in_half(self):
+        lenght = len(self)
+        assert lenght % 2==0, 'Lenght is not even'
+        cur = self.head
+        count = int(1)
+        while  count != int(lenght/2):
+            cur = cur.next
+            count += 1
+        head_list_2 = cur.next
+        cur.next = self.head
+        cur = head_list_2
+        print('List 1')
+        self.print_list()
+        while count != (lenght - 1):
+            cur = cur.next 
+            count += 1
+
+        cur.next = head_list_2
+        self.head = head_list_2
+        print('List 2')
+        self.print_list()
