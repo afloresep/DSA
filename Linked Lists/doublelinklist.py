@@ -1,3 +1,4 @@
+# Double LInked List
 class Node:
     def __init__(self, data) -> None:
         self.next = None
@@ -63,8 +64,42 @@ class DoublyLinkedList:
             prev = cur
             cur = cur.next
 
+    def delete(self, key):
+        cur = self.head
+        while cur:
+            if cur.data == key and cur == self.head:
+                if cur.next:
+                    self.head = cur.next
+                    self.head.prev = None
+                    return
+                # Deal with cases wheren head is the only node 
+                else:
+                    cur = None
+                    self.head = None
+                    return 
+                    
+            if cur.data == key:
+                prev = cur.prev 
+                if cur.next:
+                    prev.next = cur.next
+                    cur.next.prev = prev
+                else:
+                    prev.next = None
+                return
+            cur = cur.next
+
     def print_list(self):
         cur = self.head
         while cur:
             print(cur.data)
             cur = cur.next
+
+    def reverse(self):
+        tmp = None
+        cur = self.head
+        while cur:
+            tmp = cur.prev
+            cur.prev = cur.next
+            cur.next = tmp
+            cur = cur.prev
+        self.head = tmp.prev
